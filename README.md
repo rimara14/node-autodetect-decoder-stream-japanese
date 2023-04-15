@@ -2,7 +2,8 @@
 
 [![npm Version](https://badge.fury.io/js/autodetect-decoder-stream.png)](https://npmjs.org/package/autodetect-decoder-stream)
 
-An `iconv-lite` stream that autodetects the encoding and fallbacks to a specified fallback encoding.
+An `iconv-lite` stream that autodetects the encoding and fallbacks to a specified fallback encoding that focuses on detecting content with japanese character.
+Instead of using [jschardet](https://github.com/chardet/chardet), [encoding-japanese](https://github.com/polygonplanet/encoding.js/) is used.
 
 
 Usage example:
