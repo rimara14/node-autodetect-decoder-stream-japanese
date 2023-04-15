@@ -1,7 +1,7 @@
 "use strict";
 
 const Iconv = require('iconv-lite');
-const Jschardet = require('jschardet');
+const JpEncoding = require('encoding-japanese');
 const Stream = require('stream');
 const Transform = Stream.Transform;
 
@@ -9,7 +9,6 @@ class AutoDetectDecoderStream extends Transform {
     /**
      * @param {Object?} options
      * @param {string=utf8} options.defaultEncoding - What encoding to fall-back to? (Specify any `iconv-lite` encoding)
-     * @param {number?} options.minConfidence - Minimum confidence to require for detecting encodings. @see {@link https://github.com/aadsm/jschardet|chardet module}
      * @param {number=128} options.consumeSize - How many bytes to use for detecting the encoding? (Default 128)
      * @param {boolean=true} options.stripBOM - Should strip BOM for UTF streams?
      * @constructor
@@ -20,11 +19,23 @@ class AutoDetectDecoderStream extends Transform {
         options = options || {};
 
         this._defaultEncoding = options.defaultEncoding || 'utf8';
-        this._minConfidence = options.minConfidence;
         this._consumeSize = options.consumeSize || 128;
         this._detectedEncoding = false;
         this._iconvOptions = {
             stripBOM: options.stripBOM == null ? true : options.stripBOM
+        };
+        this._encodingMimeMapper = {
+            ASCII: 'US-ASCII',
+            BINARY: 'BINARY',
+            EUCJP: 'EUC-JP',
+            JIS: 'ISO-2022-JP',
+            SJIS: 'Shift_JIS',
+            UTF8: 'UTF-8',
+            UTF16: 'UTF-16',
+            UTF16BE: 'UTF-16BE',
+            UTF16LE: 'UTF-16LE',
+            UTF32: 'UTF-32',
+            UNICODE: 'UNICODE'
         };
 
         this.encoding = 'utf8'; // We output strings.
@@ -52,11 +63,10 @@ class AutoDetectDecoderStream extends Transform {
             try {
 
                 // Try to detect encoding
-                this._detectedEncoding = Jschardet.detect(this._detectionBuffer, {
-					minimumThreshold: this._minConfidence
-				}).encoding;
+                this._detectedEncoding = JpEncoding.detect(this._detectionBuffer);
+                this._detectedEncoding = this._encodingMimeMapper[this._detectedEncoding];
 
-                if (!this._detectedEncoding || this._detectedEncoding === 'ascii') {
+                if (!this._detectedEncoding || this._detectedEncoding.includes('ASCII')) {
                     //noinspection ExceptionCaughtLocallyJS
                     throw new Error('Not enough data, recognized as ASCII. We probably need to use the fallback.');
                 }

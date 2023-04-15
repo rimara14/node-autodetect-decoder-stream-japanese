@@ -3,7 +3,7 @@
 [![npm Version](https://badge.fury.io/js/autodetect-decoder-stream.png)](https://npmjs.org/package/autodetect-decoder-stream)
 
 An `iconv-lite` stream that autodetects the encoding and fallbacks to a specified fallback encoding that focuses on detecting content with japanese character.
-Instead of using [jschardet](https://github.com/chardet/chardet), [encoding-japanese](https://github.com/polygonplanet/encoding.js/) is used.
+Instead of using [jschardet](https://github.com/chardet/chardet), [encoding-japanese](https://github.com/polygonplanet/encoding.js/) is used because it's higher accuracy for japanese content.
 
 
 Usage example:
@@ -28,7 +28,6 @@ Other options that could be passed:
 Option | Explanation | Default
 ---- | ------------ | ------
   `defaultEncoding` | The fallback encoding, if nothing was detected. If "ASCII" is found, it also assumes that there was not enough data to go on, and falls back. | `'utf8'`
-  `minConfidence` | Minimum confidence to require for detecting encodings. See [jschardet](https://github.com/aadsm/jschardet) | Depends on `jschardet` (Currently 0.2)
   `consumeSize` | How much data to use for detecting the encoding? - in bytes. | `128` bytes
   `stripBOM` | Should strip the BOM for UTF streams? | `true`
 
