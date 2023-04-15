@@ -1,4 +1,4 @@
-# autodetect-decoder-stream
+# autodetect-decoder-stream-japanese
 
 [![npm Version](https://badge.fury.io/js/autodetect-decoder-stream.png)](https://npmjs.org/package/autodetect-decoder-stream)
 

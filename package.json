@@ -1,14 +1,14 @@
 {
-  "name": "autodetect-decoder-stream",
-  "version": "2.0.2",
-  "description": "An iconv-lite stream that autodetects the encoding and fallbacks to a specified fallback encoding.",
+  "name": "autodetect-decoder-stream-japanese",
+  "version": "0.0.1",
+  "description": "An iconv-lite stream that autodetects the encoding and fallbacks to a specified fallback encoding that focuses on japanese content",
   "main": "index.js",
   "scripts": {
     "test": "mocha tests/*.test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/danielgindi/node-autodetect-decoder-stream"
+    "url": "https://github.com/rimara14/node-autodetect-decoder-stream-japanese"
   },
   "keywords": [
     "node.js",
@@ -16,7 +16,8 @@
     "decoding",
     "encoding",
     "iconv",
-    "iconv-lite"
+    "iconv-lite",
+    "japanese"
   ],
   "author": "Daniel Cohen Gindi <danielgindi@gmail.com> (https://github.com/danielgindi)",
   "license": "MIT",
@@ -24,11 +25,11 @@
     "node": ">= 6"
   },
   "bugs": {
-    "url": "https://github.com/danielgindi/node-autodetect-decoder-stream/issues"
+    "url": "https://github.com/rimara14/node-autodetect-decoder-stream-japanese/issues"
   },
-  "homepage": "https://github.com/danielgindi/node-autodetect-decoder-stream",
+  "homepage": "https://github.com/rimara14/node-autodetect-decoder-stream-japanese",
   "dependencies": {
-    "jschardet": "2.*||3.*",
+    "encoding-japanese": "^2.0.0",
     "iconv-lite": "0.*"
   },
   "devDependencies": {
