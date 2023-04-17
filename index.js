@@ -35,7 +35,7 @@ class AutoDetectDecoderStream extends Transform {
             UTF16BE: 'UTF-16BE',
             UTF16LE: 'UTF-16LE',
             UTF32: 'UTF-32',
-            UNICODE: 'UNICODE'
+//             UNICODE: 'UNICODE'
         };
 
         this.encoding = 'utf8'; // We output strings.
@@ -64,7 +64,7 @@ class AutoDetectDecoderStream extends Transform {
 
                 // Try to detect encoding
                 this._detectedEncoding = JpEncoding.detect(this._detectionBuffer);
-                this._detectedEncoding = this._encodingMimeMapper[this._detectedEncoding];
+                this._detectedEncoding = this._encodingMimeMapper[this._detectedEncoding] || this._defaultEncoding;
 
                 if (!this._detectedEncoding || this._detectedEncoding.includes('ASCII')) {
                     //noinspection ExceptionCaughtLocallyJS
