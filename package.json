@@ -1,6 +1,6 @@
 {
   "name": "autodetect-decoder-stream-japanese",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An iconv-lite stream that autodetects the encoding and fallbacks to a specified fallback encoding that focuses on japanese content",
   "main": "index.js",
   "scripts": {
